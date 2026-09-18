@@ -3,19 +3,25 @@ package tests.auth;
 import static requestBuilder.admin.AdminRequestBuilder.adminLoginRequest;
 import static requestBuilder.admin.AdminRequestBuilder.approveUserRequest;
 import static requestBuilder.auth.AuthRequestBuilder.RegistrationRequest;
+import static requestBuilder.auth.AuthRequestBuilder.loginRequest;
 
 import io.restassured.response.Response;
 
 import org.testng.annotations.Test;
 
 
+
 public class AuthenticationTests {
 
     public static String firstname = "Jack";
     public static String lastname = "Sparrow";
-    public static String email = "sparrow@example.com";
+    public static String email = "sparrow" + randomNumber() + "@example.com";
     public static String password = "Pirates@123";
     public static String groupId = "5328c91e-fc40-11f0-8e00-5000e6331276";
+
+    public static int randomNumber() {
+        return (int) (Math.random() * 1000);
+    }
 
     @Test
     public void userRegistrationTest() {
@@ -24,7 +30,7 @@ public class AuthenticationTests {
         response.then().log().all();
 
         int statusCode = response.getStatusCode();
-        assert statusCode == 201 : "Expected status code 200 but got " + statusCode;
+        assert statusCode == 201 : "Expected status code 201 but got " + statusCode;
 
     }
 
@@ -33,12 +39,24 @@ public class AuthenticationTests {
         Response response = adminLoginRequest();
         response.then().log().all();
 
+        int statusCode = response.getStatusCode();
+        assert statusCode == 200 : "Expected status code 200 but got " + statusCode;
+
     }
 
 
     @Test(dependsOnMethods = "adminLoginTest")
     public void approveUserTest() {
         Response response = approveUserRequest();
+        response.then().log().all();
+
+        int statusCode = response.getStatusCode();
+        assert statusCode == 200 : "Expected status code 200 but got " + statusCode;
+    }
+
+    @Test(dependsOnMethods = "approveUserTest")
+    public void userLoginTest() {
+        Response response = loginRequest(email, password);
         response.then().log().all();
 
         int statusCode = response.getStatusCode();

@@ -13,8 +13,8 @@ public final class Routes {
 
     //USER PROFILE endpoints
     public static final String USER_PROFILE = BASE_PATH + "/profile";
-    public static final String UPDATE_PROFILE_IMAGE = BASE_PATH + "/profile/image";
-    public static final String UPDATE_PASSWORD = BASE_PATH + "/profile/password";
+    public static final String UPLOAD_PROFILE_IMAGE = BASE_PATH + "/profile/image";
+    public static final String UPDATE_USER_PASSWORD = BASE_PATH + "/profile/password";
     public static final String TODAYS_INSTRUCTORS = BASE_PATH + "/my-instructors/today";
 
     //ADMIN USERS endpoints
@@ -55,9 +55,9 @@ public final class Routes {
 
     //ADMIN APPROVAL endpoints
     public static final String GET_PENDING_APPROVALS = BASE_PATH + "/admin/approvals";
-    public static final String APPROVE_USER = BASE_PATH + "/admin/users/" + "{id}/approve";
+    public static final String APPROVE_USER = BASE_PATH + "/admin/users/{id}/approve";
     public static final String BULK_APPROVE_USERS = BASE_PATH + "/admin/approvals/bulk";
-    public static final String REJECT_USER = BASE_PATH + "/admin/users/" + "{id}/reject";
+    public static final String REJECT_USER = BASE_PATH + "/admin/users/{id}/reject";
 
     //GROUPS endpoints
     public static final String GET_GROUPS = BASE_PATH + "/groups";//GET ACTIVE GROUPS

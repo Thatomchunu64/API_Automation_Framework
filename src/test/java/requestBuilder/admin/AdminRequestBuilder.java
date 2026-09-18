@@ -1,5 +1,6 @@
 package requestBuilder.admin;
 
+import static commons.Routes.APPROVE_USER;
 import static commons.Routes.BASE_URL;
 import static io.restassured.RestAssured.given;
 import static requestBuilder.auth.AuthRequestBuilder.loginRequest;
@@ -29,13 +30,12 @@ public class AdminRequestBuilder {
 
     public static Response approveUserRequest() {
 
-        String apiPath = "/APIDEV/admin/users/" + registerUserId+ "/approve";
-
         return given()
                 .baseUri(BASE_URL)
-                .basePath(apiPath)
+                .basePath(APPROVE_USER)
                 .contentType("application/json")
                 .header("Authorization", "Bearer " + adminToken)
+                .pathParam("id", registerUserId)
                 .when()
                 .put();
     }
