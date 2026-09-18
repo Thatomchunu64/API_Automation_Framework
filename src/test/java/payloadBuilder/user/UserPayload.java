@@ -5,14 +5,19 @@ import org.json.simple.JSONObject;
 
 public class UserPayload {
 
-    public static JSONObject updateUserProfilePayload(String firstname, String lastname, String profileImage, String profilePic, String aboutMe) {
+    public static JSONObject updateUserProfilePayload(
+            String firstName,
+            String lastName,
+            String profilePicture,
+            String profileImage,
+            String aboutMe) {
 
         JSONObject updateUserProfile = new JSONObject();
-        updateUserProfile.put("firstname", firstname);
-        updateUserProfile.put("lastname", lastname);
-        updateUserProfile.put("profilePicture",profilePic);
-        updateUserProfile.put("ProfileImage",profileImage);
-        updateUserProfile.put("AboutMe",aboutMe);
+        updateUserProfile.put("firstName", firstName);
+        updateUserProfile.put("lastName", lastName);
+        updateUserProfile.put("profilePicture",profilePicture);
+        updateUserProfile.put("profileImage",profileImage);
+        updateUserProfile.put("aboutMe",aboutMe);
         return updateUserProfile;
 
     }

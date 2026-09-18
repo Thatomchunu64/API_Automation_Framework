@@ -15,7 +15,7 @@ public final class Routes {
     public static final String USER_PROFILE = BASE_PATH + "/profile";
     public static final String UPLOAD_PROFILE_IMAGE = BASE_PATH + "/profile/image";
     public static final String UPDATE_USER_PASSWORD = BASE_PATH + "/profile/password";
-    public static final String TODAYS_INSTRUCTORS = BASE_PATH + "/my-instructors/today";
+    public static final String GET_TODAYS_INSTRUCTORS = BASE_PATH + "/my-instructors/today";
 
     //ADMIN USERS endpoints
     public static final String ADMIN_USERS = BASE_PATH + "/admin/users";
