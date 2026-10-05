@@ -4,15 +4,15 @@ package tests.user;
 import io.restassured.response.Response;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import requestBuilder.admin.AdminRequestBuilder;
-import requestBuilder.auth.AuthRequestBuilder;
-import requestBuilder.user.UserProfileRequestBuilder;
+import requestBuilders.admin.AdminRequestBuilder;
+import requestBuilders.auth.AuthRequestBuilder;
+import requestBuilders.user.UserProfileRequestBuilder;
 
 
 import java.io.IOException;
 
 import static org.hamcrest.Matchers.equalTo;
-import static requestBuilder.user.UserProfileRequestBuilder.*;
+import static requestBuilders.user.UserProfileRequestBuilder.*;
 
 
 public class UserProfileTests {
@@ -74,7 +74,7 @@ public class UserProfileTests {
                 .all()
                 .assertThat()
                 .statusCode(200)
-                .body("status", equalTo(true));
+                .body("success", equalTo(true));
 
     }
 

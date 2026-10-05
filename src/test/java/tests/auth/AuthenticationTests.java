@@ -2,10 +2,10 @@ package tests.auth;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
-import static requestBuilder.admin.AdminRequestBuilder.adminLoginRequest;
-import static requestBuilder.admin.AdminRequestBuilder.approveUserRequest;
-import static requestBuilder.auth.AuthRequestBuilder.RegistrationRequest;
-import static requestBuilder.auth.AuthRequestBuilder.loginRequest;
+import static requestBuilders.admin.AdminRequestBuilder.adminLoginRequest;
+import static requestBuilders.admin.AdminRequestBuilder.approveUserRequest;
+import static requestBuilders.auth.AuthRequestBuilder.RegistrationRequest;
+import static requestBuilders.auth.AuthRequestBuilder.loginRequest;
 
 
 import com.github.javafaker.Faker;
@@ -89,7 +89,7 @@ public class AuthenticationTests {
     @Test(dependsOnMethods = "approveUserTest")
     public static void userLoginTest() {
 
-        Response response = loginRequest(email, "rewer567");
+        Response response = loginRequest(email, password);
         response.then()
                 .log()
                 .all()
