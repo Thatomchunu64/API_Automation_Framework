@@ -9,57 +9,70 @@ import static requestBuilders.auth.AuthRequestBuilder.loginRequest;
 
 
 import com.github.javafaker.Faker;
-import io.restassured.response.Response;
+
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import utils.DBPlug;
+
+import java.sql.SQLException;
+import java.util.Random;
 
 
 public class AuthenticationTests {
 
+
+
     public static String firstname;
     public static String lastname;
     public static String email;
-    //  public static String email = "sparrow" + randomNumber() + "@example.com"
     public static String password;
     public static String groupId;
 
-  /*  public static int randomNumber() {
-        return (int) (Math.random() * 1000);
-    }*/
+    private static final Random random = new Random();
 
 
-    static Faker fake = new Faker();
+
+    public static int randomNumber() {
+        return random.nextInt(1000);
+    }
+
+
+    public static Faker fake = new Faker();
 
     @BeforeClass
-    public static void setUpData() {
+    public static void setUpData() throws SQLException {
 
         firstname = fake.name().firstName();
         lastname = fake.name().lastName();
-        email = firstname + "34@gmail.com";
+        email = firstname + randomNumber()+"@gmail.com";
         password = fake.dragonBall().character() + "@2026";
         groupId = "5328c91e-fc40-11f0-8e00-5000e6331276"; // Assuming groupId is a String, you can change it as needed
 
+
+        DBPlug.insertUser(email,password);
+        DBPlug.getLoginDetails(email);
     }
 
     @Test
     public static void userRegistrationTest() {
 
-        Response response = RegistrationRequest(firstname, lastname, email, password, groupId);
-        response.then()
+        RegistrationRequest(firstname, lastname, email, password, groupId)
+                .then()
                 .log()
-                .all();
-
-        int statusCode = response.getStatusCode();
-        assert statusCode == 201 : "Expected status code 201 but got " + statusCode;
+                .all()
+                .assertThat()
+                .statusCode(201)
+                .body("success", equalTo(true));
 
     }
+
 
     @Test(priority = 1)
     public static void adminLoginTest() {
 
-        Response response = adminLoginRequest();
-        response.then()
+       adminLoginRequest()
+                .then()
                 .log()
                 .all()
                 .assertThat()
@@ -74,23 +87,21 @@ public class AuthenticationTests {
     @Test(dependsOnMethods = {"userRegistrationTest", "adminLoginTest"})
     public static void approveUserTest() {
 
-        Response response = approveUserRequest();
-        response.then()
+        approveUserRequest()
+                .then()
                 .log()
                 .all()
                 .body("data.approvalStatus", equalTo("approved"))
                 .body("message", equalTo("User approved successfully"));
 
-        int statusCode = response.getStatusCode();
-        assert statusCode == 200 : "Expected status code 200 but got " + statusCode;
 
     }
 
-    @Test(dependsOnMethods = "approveUserTest")
+    @Test (dependsOnMethods = "approveUserTest")
     public static void userLoginTest() {
 
-        Response response = loginRequest(email, password);
-        response.then()
+        loginRequest(DBPlug.getEmail, DBPlug.getPassword)
+                .then()
                 .log()
                 .all()
                 .assertThat()
@@ -104,8 +115,9 @@ public class AuthenticationTests {
     @Test
     public static void negativeUserLoginTest() {
 
-        Response response = loginRequest(email, password);
-        response.then().log()
+        loginRequest(email, password)
+                .then()
+                .log()
                 .all()
                 .assertThat()
                 .statusCode(401)

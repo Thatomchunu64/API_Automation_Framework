@@ -3,6 +3,9 @@ package commons;
 public final class Routes {
     public static final String BASE_URL = "https://ndosiautomation.co.za";
     public static final String BASE_PATH = "/APIDEV";
+    public static final String DB_URL = "jdbc:mysql://102.222.124.22:3306/ndosian6b8b7_teaching";
+    public static final String DB_USERNAME = "ndosian6b8b7_teaching";
+    public static final String DB_PASSWORD = "^{SF0a=#~[~p)@l1";
 
     //authorization endpoints
     public static final String LOGIN = BASE_PATH + "/login";
@@ -21,10 +24,10 @@ public final class Routes {
     public static final String ADMIN_USERS = BASE_PATH + "/admin/users";
     public static final String DELETE_ADMIN_USER = BASE_PATH + "/admin/users/" + "{id}";
     public static final String ADMIN_USER_DETAILS = BASE_PATH + "/admin/users/" + "{id}";
-    public static final String  BULK_DELETE_ADMIN_USERS = BASE_PATH + "/admin/users/bulk-delete";
-    public static final String  UPDATE_USER_ROLE = BASE_PATH + "/admin/users/{id}/role";
-    public static final String  EDIT_USER_STATUS = BASE_PATH + "/admin/users/{id}/status";
-    public static final String  UPDATE_USER_GROUP = BASE_PATH + "/admin/users/{id}/group";
+    public static final String BULK_DELETE_ADMIN_USERS = BASE_PATH + "/admin/users/bulk-delete";
+    public static final String UPDATE_USER_ROLE = BASE_PATH + "/admin/users/{id}/role";
+    public static final String EDIT_USER_STATUS = BASE_PATH + "/admin/users/{id}/status";
+    public static final String UPDATE_USER_GROUP = BASE_PATH + "/admin/users/{id}/group";
 
     //ADMIN DASHBOARD endpoints
     public static final String ADMIN_DASHBOARD = BASE_PATH + "/admin/dashboard";
@@ -32,7 +35,7 @@ public final class Routes {
 
 
     //TESTIMONIALS endpoints
-    public static final String TESTIMONIALS= BASE_PATH + "/testimonials";
+    public static final String TESTIMONIALS = BASE_PATH + "/testimonials";
     public static final String GET_TESTIMONIALS_CREATE = BASE_PATH + "/my-testimonials";
     public static final String MODIFY_TESTIMONIALS = BASE_PATH + "/testimonials/" + "{id}";
 
@@ -73,7 +76,7 @@ public final class Routes {
 
     //ADMIN ENROLLMENTS endpoints
     public static final String ADMIN_ENROLLMENTS = BASE_PATH + "/admin/enrollments";// GET ALL ENROLLMENTS
-    public static final String GET_SINGLE_ENROLLMENT = BASE_PATH + "/admin/enrollments/"+ "{id}";
+    public static final String GET_SINGLE_ENROLLMENT = BASE_PATH + "/admin/enrollments/" + "{id}";
     public static final String ENROLL_STUDENT = BASE_PATH + "/admin/enrollments";
     public static final String BULK_ENROLL_STUDENTS = BASE_PATH + "/admin/enrollments/bulk";
     public static final String ENROLL_GROUP = BASE_PATH + "/admin/enrollments/group";
@@ -107,12 +110,7 @@ public final class Routes {
     public static final String GRADUATES = BASE_PATH + "/graduates";
 
 
-
-
-
     public static final String REFRESH = BASE_PATH + "/auth/refresh";
-
-
 
 
     //ANNOUNCEMENTS endpoints
@@ -123,6 +121,4 @@ public final class Routes {
     public static final String CREATE_ANNOUNCEMENT = BASE_PATH + "/admin/announcements";
     public static final String MODIFY_ANNOUNCEMENT = BASE_PATH + "/admin/announcements/" + "{id}";
 
-    private Routes() {
-    }
 }

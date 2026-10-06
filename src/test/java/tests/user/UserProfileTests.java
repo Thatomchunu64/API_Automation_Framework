@@ -1,52 +1,40 @@
 package tests.user;
 
 
-import io.restassured.response.Response;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import requestBuilders.admin.AdminRequestBuilder;
 import requestBuilders.auth.AuthRequestBuilder;
+import requestBuilders.auth.AuthSetup;
 import requestBuilders.user.UserProfileRequestBuilder;
+import utils.DBPlug;
 
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.notNullValue;
 import static requestBuilders.user.UserProfileRequestBuilder.*;
 
 
 public class UserProfileTests {
 
-
-    public static String firstname = "Jerry";
-    public static String lastname = "Springer";
-    public static String email = "springer" + randomNumber() + "@example.com";
-    public static String password = "@12312341234";
-    public static String groupId = "5328c91e-fc40-11f0-8e00-5000e6331276";
-
-    public static int randomNumber() {
-        return (int) (Math.random() * 1000);
-    }
-
     @BeforeClass
-    public void AuthTest() {
-
-        AuthRequestBuilder.RegistrationRequest(firstname, lastname, email, password, groupId);
-        AdminRequestBuilder.adminLoginRequest();
-        AdminRequestBuilder.approveUserRequest();
-        AuthRequestBuilder.loginRequest(email, password);
-
+    public void AuthTest() throws SQLException {
+        AuthSetup.setupAuthenticatedUser();
     }
 
 
     @Test
     public static void getUserProfileTest() {
 
-        Response response = getUserProfileRequest();
-        response.then().log().all();
-
-        int statusCode = response.getStatusCode();
-        assert statusCode == 200 : "Expected status code 200 but got " + statusCode;
+        getUserProfileRequest()
+                .then()
+                .log()
+                .all()
+                .assertThat()
+                .statusCode(200)
+                .body("success", equalTo(true));
 
 
     }
@@ -54,11 +42,15 @@ public class UserProfileTests {
     @Test(dependsOnMethods = "getUserProfileTest")
     public static void uploadImageTest() {
 
-        Response response = uploadProfileImageRequest();
-        response.then().log().all();
+        uploadProfileImageRequest()
+                .then()
+                .log()
+                .all()
+                .assertThat()
+                .statusCode(200)
+                .body("success", equalTo(true));
 
-        int statusCode = response.getStatusCode();
-        assert statusCode == 200 : "Expected status code 200 but got " + statusCode;
+
     }
 
     @Test(dependsOnMethods = "uploadImageTest")
@@ -68,8 +60,8 @@ public class UserProfileTests {
         String testlastname = "Bling";
         String testaboutme = "IM A RICH MF";
 
-        Response response = updateUserProfileRequest(testfirstname, testlastname, testaboutme);
-        response.then()
+        updateUserProfileRequest(testfirstname, testlastname, testaboutme)
+                .then()
                 .log()
                 .all()
                 .assertThat()
@@ -79,21 +71,36 @@ public class UserProfileTests {
     }
 
     @Test(dependsOnMethods = "updateUserProfileTest")
-    public static void updateUserPasswordTest() {
+    public static void updateUserPasswordTest() throws SQLException {
 
         String newPassword = "BlingBlingBoy@64";
-        String oldPassword = password;
+        String oldPassword = DBPlug.getPassword;
 
-        Response response = UserProfileRequestBuilder.updateUserPasswordRequest(oldPassword, newPassword);
-        response.then()
+        UserProfileRequestBuilder.updateUserPasswordRequest(oldPassword, newPassword)
+                .then()
                 .log()
                 .all()
                 .assertThat()
                 .statusCode(200)
                 .body("success", equalTo(true))
                 .body("message", equalTo("Password updated successfully"));
+        DBPlug.updatePassword(newPassword); // Update the password in the database for future tests
 
     }
 
+    @Test(dependsOnMethods = "updateUserPasswordTest")
+    public static void updatedPasswordUserLoginTest() {
+
+        AuthRequestBuilder.loginRequest(DBPlug.getEmail, "BlingBlingBoy@64")
+                .then()
+                .log()
+                .all()
+                .assertThat()
+                .statusCode(200)
+                .body("success", equalTo(true))
+                .body("message", equalTo("Login successful"))
+                .body("data.token", notNullValue());
+
+    }
 
 }
