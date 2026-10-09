@@ -10,11 +10,10 @@ import static payloadBuilders.testimonials.TestimonialsPayload.createTestimonial
 import static requestBuilders.auth.AuthRequestBuilder.token;
 
 
-
 public class TestimonialRequestBuilder {
 
 
-    public static String  testimonialID;
+    public static String testimonialID;
 
     public static Response createTestimonialRequest(String title, String content, int rating, boolean isPublic) {
 

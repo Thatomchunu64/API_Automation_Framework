@@ -46,14 +46,14 @@ public final class Routes {
     public static final String TOGGLE_TESTIMONIALS = BASE_PATH + "/admin/testimonials/{id}";
 
     //USER COURSES endpoints
-    public static final String COURSES = BASE_PATH + "/courses";
+    public static final String GET_COURSES = BASE_PATH + "/courses";
     public static final String GET_COURSE_BY_ID = BASE_PATH + "/courses/{id}";
     public static final String COURSE_ENROLL = BASE_PATH + "/courses/{id}/enroll";
     public static final String COURSE_PROGRESS = BASE_PATH + "/courses/{id}/progress";
     public static final String ENROLLMENTS = BASE_PATH + "/my-enrollments";
 
     //ADMIN COURSES endpoints
-    public static final String ADMIN_COURSES = BASE_PATH + "/admin/courses";
+    public static final String GET_ADMIN_COURSES = BASE_PATH + "/admin/courses";
     public static final String CREATE_ADMIN_COURSE = BASE_PATH + "/admin/courses";
     public static final String MODIFY_ADMIN_COURSE = BASE_PATH + "/admin/courses/{id}";
 
