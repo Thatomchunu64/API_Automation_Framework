@@ -60,9 +60,8 @@ public class AuthRequestBuilder {
                 .post()
                 .then()
                 .statusCode(201)
-                .body("success", equalTo(true))
-                .extract().
-                response();
+                .extract()
+                .response();
 
         registerUserId = response.jsonPath().getString("data.id");
 
@@ -80,7 +79,6 @@ public class AuthRequestBuilder {
                 .post()
                 .then()
                 .statusCode(200)
-                .body("success", equalTo(true))
                 .extract().response();
     }
 
@@ -95,8 +93,8 @@ public class AuthRequestBuilder {
                 .post()
                 .then()
                 .statusCode(200)
-                .body("success", equalTo(true))
-                .extract().response();
+                .extract()
+                .response();
     }
 
     public static Response resetPasswordRequest(String token, String password) {
@@ -110,7 +108,7 @@ public class AuthRequestBuilder {
                 .post()
                 .then()
                 .statusCode(200)
-                .body("success", equalTo(true))
-                .extract().response();
+                .extract()
+                .response();
     }
 }

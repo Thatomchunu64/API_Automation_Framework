@@ -20,7 +20,7 @@ import static requestBuilders.user.UserProfileRequestBuilder.*;
 public class UserProfileTests {
 
     @BeforeClass
-    public void AuthTest() throws SQLException {
+    public void authTest() throws SQLException {
         AuthSetup.setupAuthenticatedUser();
     }
 

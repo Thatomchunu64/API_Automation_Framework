@@ -36,25 +36,26 @@ public final class Routes {
 
     //TESTIMONIALS endpoints
     public static final String TESTIMONIALS = BASE_PATH + "/testimonials";
-    public static final String GET_TESTIMONIALS_CREATE = BASE_PATH + "/my-testimonials";
-    public static final String MODIFY_TESTIMONIALS = BASE_PATH + "/testimonials/" + "{id}";
+    public static final String GET_MY_TESTIMONIALS = BASE_PATH + "/my-testimonials";
+    public static final String GET_PUBLIC_TESTIMONIALS = BASE_PATH + "/testimonials";
+    public static final String MODIFY_TESTIMONIALS = BASE_PATH + "/testimonials/{id}";
 
 
     //ADMIN TESTIMONIALS endpoints
     public static final String ADMIN_TESTIMONIALS = BASE_PATH + "/admin/testimonials";
-    public static final String TOGGLE_TESTIMONIALS = BASE_PATH + "/admin/testimonials/" + "{id}";
+    public static final String TOGGLE_TESTIMONIALS = BASE_PATH + "/admin/testimonials/{id}";
 
     //USER COURSES endpoints
     public static final String COURSES = BASE_PATH + "/courses";
-    public static final String GET_COURSE_BY_ID = BASE_PATH + "/courses/" + "{id}";
-    public static final String COURSE_ENROLL = BASE_PATH + "/courses/" + "{id}/enroll";
-    public static final String COURSE_PROGRESS = BASE_PATH + "/courses/" + "{id}/progress";
+    public static final String GET_COURSE_BY_ID = BASE_PATH + "/courses/{id}";
+    public static final String COURSE_ENROLL = BASE_PATH + "/courses/{id}/enroll";
+    public static final String COURSE_PROGRESS = BASE_PATH + "/courses/{id}/progress";
     public static final String ENROLLMENTS = BASE_PATH + "/my-enrollments";
 
     //ADMIN COURSES endpoints
     public static final String ADMIN_COURSES = BASE_PATH + "/admin/courses";
     public static final String CREATE_ADMIN_COURSE = BASE_PATH + "/admin/courses";
-    public static final String MODIFY_ADMIN_COURSE = BASE_PATH + "/admin/courses/" + "{id}";
+    public static final String MODIFY_ADMIN_COURSE = BASE_PATH + "/admin/courses/{id}";
 
     //ADMIN APPROVAL endpoints
     public static final String GET_PENDING_APPROVALS = BASE_PATH + "/admin/approvals";
@@ -68,40 +69,40 @@ public final class Routes {
     //ADMIN GROUPS endpoints
     public static final String ADMIN_GROUPS = BASE_PATH + "/admin/groups";// GET ALL GROUPS
     public static final String CREATE_GROUP = BASE_PATH + "/admin/groups";
-    public static final String MODIFY_GROUP = BASE_PATH + "/admin/groups/" + "{id}";
-    public static final String GET_STUDENT_GROUP = BASE_PATH + "/admin/groups/" + "{id}";
+    public static final String MODIFY_GROUP = BASE_PATH + "/admin/groups/{id}";
+    public static final String GET_STUDENT_GROUP = BASE_PATH + "/admin/groups/{id}";
 
     //ENROLLMENTS endpoints
     public static final String MY_ENROLLMENT_STATUS = BASE_PATH + "/my-enrollment-status";
 
     //ADMIN ENROLLMENTS endpoints
     public static final String ADMIN_ENROLLMENTS = BASE_PATH + "/admin/enrollments";// GET ALL ENROLLMENTS
-    public static final String GET_SINGLE_ENROLLMENT = BASE_PATH + "/admin/enrollments/" + "{id}";
+    public static final String GET_SINGLE_ENROLLMENT = BASE_PATH + "/admin/enrollments/{id}";
     public static final String ENROLL_STUDENT = BASE_PATH + "/admin/enrollments";
     public static final String BULK_ENROLL_STUDENTS = BASE_PATH + "/admin/enrollments/bulk";
     public static final String ENROLL_GROUP = BASE_PATH + "/admin/enrollments/group";
     public static final String ENROLLMENT_STATS = BASE_PATH + "/admin/enrollments/stats";
     public static final String PENDING_ENROLLMENTS = BASE_PATH + "/admin/enrollments/pending";
-    public static final String MODIFY_ENROLLMENT = BASE_PATH + "/admin/enrollments/" + "{id}";
-    public static final String APPROVE_ENROLLMENT = BASE_PATH + "/admin/enrollments/" + "{id}/approve";
+    public static final String MODIFY_ENROLLMENT = BASE_PATH + "/admin/enrollments/{id}";
+    public static final String APPROVE_ENROLLMENT = BASE_PATH + "/admin/enrollments/{id}/approve";
     public static final String BULK_APPROVE_ENROLLMENTS = BASE_PATH + "/admin/enrollments/bulk-approve";
-    public static final String REJECT_ENROLLMENT = BASE_PATH + "/admin/enrollments/" + "{id}/reject";
-    public static final String ENROLLMENT_HISTORY = BASE_PATH + "/admin/enrollments/" + "{id}/history";
-    public static final String COMPLETE_ENROLLMENT = BASE_PATH + "/admin/enrollments/" + "{id}/complete";
+    public static final String REJECT_ENROLLMENT = BASE_PATH + "/admin/enrollments/{id}/reject";
+    public static final String ENROLLMENT_HISTORY = BASE_PATH + "/admin/enrollments/{id}/history";
+    public static final String COMPLETE_ENROLLMENT = BASE_PATH + "/admin/enrollments/{id}/complete";
     public static final String COMPLETE_GROUPS_ENROLLMENT = BASE_PATH + "/admin/enrollments/group/complete";
 
 
     //STUDENT TASKS endpoints
     public static final String STUDENT_TASKS = BASE_PATH + "/my-instructor-tasks";
-    public static final String COMPLETE_TASK = BASE_PATH + "/my-instructor-tasks/" + "{id}/complete";
+    public static final String COMPLETE_TASK = BASE_PATH + "/my-instructor-tasks/{id}/complete";
 
 
     //STUDENT RECORDINGS endpoints
     public static final String GET_RECORDINGS = BASE_PATH + "/recordings/my";
-    public static final String GET_SINGLE_RECORDING = BASE_PATH + "/recordings/" + "{id}";
-    public static final String GET_GROUP_RECORDINGS = BASE_PATH + "/recordings/group/" + "{groupId}";
+    public static final String GET_SINGLE_RECORDING = BASE_PATH + "/recordings/{id}";
+    public static final String GET_GROUP_RECORDINGS = BASE_PATH + "/recordings/group/{groupId}";
     public static final String CREATE_RECORDING = BASE_PATH + "/recordings/";
-    public static final String MODIFY_RECORDING = BASE_PATH + "/recordings/" + "{id}";
+    public static final String MODIFY_RECORDING = BASE_PATH + "/recordings/{id}";
 
     //ADMIN RECORDINGS endpoints
     public static final String ADMIN_RECORDINGS = BASE_PATH + "/recordings/admin";
@@ -119,6 +120,6 @@ public final class Routes {
     //ADMIN ANNOUNCEMENTS endpoints
     public static final String ADMIN_ANNOUNCEMENTS = BASE_PATH + "/admin/announcements";
     public static final String CREATE_ANNOUNCEMENT = BASE_PATH + "/admin/announcements";
-    public static final String MODIFY_ANNOUNCEMENT = BASE_PATH + "/admin/announcements/" + "{id}";
+    public static final String MODIFY_ANNOUNCEMENT = BASE_PATH + "/admin/announcements/{id}";
 
 }
