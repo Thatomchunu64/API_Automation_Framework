@@ -1,6 +1,8 @@
 package requestBuilders.auth;
 
 import com.github.javafaker.Faker;
+import io.restassured.response.Response;
+import org.testng.Assert;
 import utils.DBPlug;
 
 import java.sql.SQLException;
@@ -25,9 +27,6 @@ public class AuthSetup {
         String password = fake.dragonBall().character() + "@2026";
         String groupId = "5328c91e-fc40-11f0-8e00-5000e6331276";
 
-        // Prepare DB
-        DBPlug.insertUser(email, password);
-        DBPlug.getLoginDetails(email);
 
         // Register
         RegistrationRequest(
@@ -38,6 +37,9 @@ public class AuthSetup {
                 groupId
         );
 
+        DBPlug.insertUser(email, password);
+
+
         // Admin authentication
         adminLoginRequest();
 
@@ -45,9 +47,18 @@ public class AuthSetup {
         approveUserRequest();
 
         // User authentication
+        DBPlug.getLoginDetails(email);
         loginRequest(
+
                 DBPlug.getEmail,
                 DBPlug.getPassword
         );
+    }
+
+    public static Response loginSetup() throws SQLException {
+
+        DBPlug.getLoginDetails("Fermin99@gmail.com");
+
+        return AuthRequestBuilder.loginRequest(DBPlug.getEmail, DBPlug.getPassword);
     }
 }

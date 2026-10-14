@@ -41,7 +41,7 @@ public class AuthenticationTests {
     public static Faker fake = new Faker();
 
     @BeforeClass
-    public static void setUpData() throws SQLException {
+    public static void setUpData() {
 
         firstname = fake.name().firstName();
         lastname = fake.name().lastName();
@@ -50,12 +50,11 @@ public class AuthenticationTests {
         groupId = "5328c91e-fc40-11f0-8e00-5000e6331276"; // Assuming groupId is a String, you can change it as needed
 
 
-        DBPlug.insertUser(email,password);
-        DBPlug.getLoginDetails(email);
+
     }
 
     @Test
-    public static void userRegistrationTest() {
+    public static void userRegistrationTest() throws SQLException {
 
         RegistrationRequest(firstname, lastname, email, password, groupId)
                 .then()
@@ -64,6 +63,8 @@ public class AuthenticationTests {
                 .assertThat()
                 .statusCode(201)
                 .body("success", equalTo(true));
+
+        DBPlug.insertUser(email,password);
 
     }
 
@@ -98,7 +99,8 @@ public class AuthenticationTests {
     }
 
     @Test (dependsOnMethods = "approveUserTest")
-    public static void userLoginTest() {
+    public static void userLoginTest() throws SQLException {
+        DBPlug.getLoginDetails(email);
 
         loginRequest(DBPlug.getEmail, DBPlug.getPassword)
                 .then()

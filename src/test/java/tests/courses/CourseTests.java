@@ -15,7 +15,7 @@ public class CourseTests {
     @BeforeClass
     public static void authenticationTest() throws SQLException {
 
-        AuthSetup.setupAuthenticatedUser();
+        AuthSetup.loginSetup();
 
     }
 
@@ -30,6 +30,8 @@ public class CourseTests {
                 .assertThat()
                 .statusCode(200)
                 .body("success", equalTo(true));
+
+
 
     }
 

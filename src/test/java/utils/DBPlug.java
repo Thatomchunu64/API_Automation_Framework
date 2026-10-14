@@ -53,7 +53,7 @@ public class DBPlug {
                     while (resultSet.next()) {
                         getEmail = resultSet.getString("email");
                         getPassword = resultSet.getString("password");
-                        System.out.println("Email from DB: " + getEmail + ", Password from DB: " + getPassword);
+//                        System.out.println("Email from DB: " + getEmail + ", Password from DB: " + getPassword);
                     }
                 }
 
