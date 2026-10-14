@@ -7,6 +7,10 @@ public final class Routes {
     public static final String DB_USERNAME = "ndosian6b8b7_teaching";
     public static final String DB_PASSWORD = "^{SF0a=#~[~p)@l1";
 
+    //Schema file path
+    public static final String JSON_SCHEMA_PATH = "src/test/resources/schemas/";
+
+
     //authorization endpoints
     public static final String LOGIN = BASE_PATH + "/login";
     public static final String REGISTER = BASE_PATH + "/register";

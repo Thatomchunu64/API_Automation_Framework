@@ -11,10 +11,15 @@ import static requestBuilders.auth.AuthRequestBuilder.loginRequest;
 import com.github.javafaker.Faker;
 
 
+import commons.Routes;
+import io.restassured.response.Response;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import requestBuilders.admin.AdminRequestBuilder;
 import utils.DBPlug;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.Random;
 
@@ -126,6 +131,24 @@ public class AuthenticationTests {
                 .body("success", equalTo(false))//other way of asserting
                 .body("message", equalTo("Invalid email or password"))//other way of asserting
                 .body("error_code", equalTo("INVALID_CREDENTIALS"));
+
+    }
+
+    @Test(dependsOnMethods = "adminLoginTest")
+    public static void schemaValidatorTest(){
+
+        Response response = AdminRequestBuilder.adminLoginRequest();
+
+        try {
+            String savedSchema = Files.readString(Paths.get(Routes.JSON_SCHEMA_PATH+"AdminLoginSchema.json"));
+            System.out.println("Loaded Schema: "+ savedSchema);
+        }
+        catch (Exception exception){
+            exception.printStackTrace();
+        }
+
+        String schemaPath = Paths.get(Routes.JSON_SCHEMA_PATH+"AdminLoginSchema.json").toAbsolutePath().toString();
+        response.then().assertThat().body(io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchema(Paths.get(schemaPath).toFile()));
 
     }
 
