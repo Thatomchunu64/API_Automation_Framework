@@ -134,6 +134,7 @@ public class AuthenticationTests {
 
     }
 
+
     @Test(dependsOnMethods = "adminLoginTest")
     public static void schemaValidatorTest(){
 
