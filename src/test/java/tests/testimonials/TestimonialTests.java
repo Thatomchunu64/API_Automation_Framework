@@ -1,7 +1,6 @@
 package tests.testimonials;
 
 
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import requestBuilders.auth.AuthSetup;
