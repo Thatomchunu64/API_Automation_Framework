@@ -38,6 +38,7 @@ public class TestimonialRequestBuilder {
 
     public static Response updateTestimonialRequest(String title, String content, int rating) {
 
+        //String mytestimonialID = "aa50dcfe-b856-479d-a73f-3e11537dd0cc"; // Use the testimonialID from the createTestimonialRequest method
         return given()
                 .baseUri(BASE_URL)
                 .basePath(MODIFY_TESTIMONIALS)

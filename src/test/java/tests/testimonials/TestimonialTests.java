@@ -2,6 +2,7 @@ package tests.testimonials;
 
 
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import requestBuilders.auth.AuthSetup;
 import requestBuilders.testimonials.TestimonialRequestBuilder;
@@ -12,7 +13,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class TestimonialTests {
 
-    @BeforeClass
+    @BeforeTest
     public static void authenticateUserTest() throws SQLException {
 
         AuthSetup.setupAuthenticatedUser();
@@ -58,7 +59,7 @@ public class TestimonialTests {
                 .body("success", equalTo(true));
     }
 
-    @Test(dependsOnMethods = "createTestimonialTest")
+    @Test
     public static void updateTestimonialTest() {
 
         String updatedTitle = "Updated Testimonial Title";
@@ -85,4 +86,5 @@ public class TestimonialTests {
                 .statusCode(200)
                 .body("success", equalTo(true));
     }
+
 }

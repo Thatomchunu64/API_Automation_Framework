@@ -15,29 +15,18 @@ public class AdminCourseTests {
         AdminRequestBuilder.adminLoginRequest();
     }
 
+
     @Test
-    public static void getCoursesTest() {
-
-        AdminCourseRequestBuilder.getAllCoursesRequest()
-                .then()
-                .log()
-                .all()
-                .assertThat()
-                .statusCode(200)
-                .body("success", equalTo(true));
-    }
-
-    @Test(priority = 1)
     public static void createCourseTest() {
 
-        String title = "New Course";
-        String description = "This is a new course.";
-        String content = "Course content goes here.";
+        String title = "Psychology 101";
+        String description = "This course is about introductory psychology.";
+        String content = "Content for Psychology 101.";
         String thumbnailUrl = "https://example.com/thumbnail.jpg";
         String meetingUrl = "https://example.com/meeting";
         String duration = "2 hours";
-        String level = "Beginner";
-        String category = "Programming";
+        String level = "Intermediate";
+        String category = "Psychology";
         boolean isPublished = true;
         boolean isFeatured = true;
         int sortOrder = 1;
@@ -52,8 +41,20 @@ public class AdminCourseTests {
 
     }
 
+    @Test(priority = 1)
+    public static void getCoursesTest() {
 
-    @Test(dependsOnMethods = "createCourseTest")
+        AdminCourseRequestBuilder.getAllCoursesRequest()
+                .then()
+                .log()
+                .all()
+                .assertThat()
+                .statusCode(200)
+                .body("success", equalTo(true));
+    }
+
+
+    @Test(dependsOnMethods = {"createCourseTest"}, priority = 2)
     public static void updateCourseTest() {
 
         String title = "THIS IS AN UPDATION";
